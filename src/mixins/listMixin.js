@@ -9,9 +9,9 @@ const list = {
       tableLoading: false, // 控制表格加载中动画显隐
       inputTimer: null, // 输入框查询防抖计时器
       loadingTimer: null, // 表格加载中动画计时器
-      pageSizes: [10, 20, 50, 100],
+      // pageSizes: [10, 20, 50, 100],
       searchParams: {
-        pageIndex: 1,
+        page: 1,
         pageSize: 10,
       },
       // 搜索防抖，用户停止输入300毫秒后发起查询请求
@@ -46,12 +46,12 @@ const list = {
      * @param val
      */
     handleCurrentChange(val) {
-      this.searchParams.pageIndex = val
+      this.searchParams.page = val
       this.fetchData()
     },
     // 页数回到第一页
     search() {
-      this.searchParams.pageIndex = 1
+      this.searchParams.page = 1
       this.fetchData()
     },
     /**
