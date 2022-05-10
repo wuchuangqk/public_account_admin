@@ -38,8 +38,6 @@
           :show-file-list="false"
           :on-success="handleAvatarSuccess"
           :before-upload="beforeAvatarUpload"
-          :headers="{ 'Content-Type': 'application/x-www-form-urlencoded' }"
-          with-credentials
         >
           <img v-if="formData.pic" :src="formData.pic" class="avatar" />
           <i v-else class="el-icon-plus avatar-uploader-icon"></i>
@@ -80,9 +78,9 @@ export default {
         info: [
           { required: true, message: "请输入用户识别码", trigger: "blur" },
         ],
-        // pic: [{ required: true, message: "请上传二维码", trigger: "change" }],
+        pic: [{ required: true, message: "请上传二维码", trigger: "change" }],
       },
-      baseUrl: "https://appv41.bdhuoke.com",
+      baseUrl: "https://appv41.bdhuoke.com/api/v41/gzh/uploadfile",
     };
   },
   methods: {
@@ -98,7 +96,7 @@ export default {
       });
     },
     handleAvatarSuccess(res) {
-      this.formData.pic = this.baseUrl + res.data;
+      this.formData.pic = "https://appv41.bdhuoke.com" + res.data;
     },
     beforeAvatarUpload(file) {
       const isJPGOrPNG =

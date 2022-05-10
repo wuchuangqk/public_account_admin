@@ -15,6 +15,7 @@
     >
       <el-table-column label="内容" prop="info"></el-table-column>
       <el-table-column label="结算周期" prop="settcycle_id"></el-table-column>
+      <el-table-column label="二维码地址" prop="pic"></el-table-column>
       <el-table-column label="操作" width="150" align="center">
         <template slot-scope="scope">
           <el-button type="text" @click="$refs.form.open()">发布</el-button>

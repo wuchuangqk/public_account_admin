@@ -151,20 +151,18 @@ export default {
         remark: [{ required: true, message: "请输入备注", trigger: "blur" }],
       },
       predefineColors: ["#999999", "#FF0000", "#0000FF"],
-      openIdList: [], // 所有用户的openid
-      access_token: null, // 接口调用凭证
-      template_id: "TTZYzEur28kgGJsYJznx7neFyFk7UL2Z6wSgRpCDY2Q", // 模板id
-      url: "", // 点击模板消息跳转的地址
+      id: null,
     };
   },
   methods: {
     open(id) {
       this.dialog.show = true;
       this.dialog.loading = false;
-      this.url = "http://account.channel.bdhuoke.com/details?id=" + id;
+      this.id = id
     },
     saveOrUpdate() {
       const params = {
+        id: this.id,
         first_value: this.formData.first,
         first_color: this.color1,
         keyword1_value: this.formData.keyword1,
