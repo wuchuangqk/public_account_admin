@@ -3,6 +3,8 @@
     title="添加内容"
     :visible.sync="dialog.show"
     width="800px"
+    :close-on-click-modal="false"
+    :before-close="close"
     id="content-form"
   >
     <el-form ref="form" :model="formData" :rules="rules" label-width="100px">
@@ -36,6 +38,8 @@
           :show-file-list="false"
           :on-success="handleAvatarSuccess"
           :before-upload="beforeAvatarUpload"
+          :headers="{ 'Content-Type': 'application/x-www-form-urlencoded' }"
+          with-credentials
         >
           <img v-if="formData.pic" :src="formData.pic" class="avatar" />
           <i v-else class="el-icon-plus avatar-uploader-icon"></i>
@@ -44,7 +48,7 @@
     </el-form>
 
     <div slot="footer">
-      <el-button type="default" @click="dialog.show = false">取 消</el-button>
+      <el-button type="default" @click="close">取 消</el-button>
       <el-button type="primary" :loading="dialog.loading" @click="submit"
         >保存</el-button
       >

@@ -1,7 +1,9 @@
 <template>
   <div class="app-page">
     <header class="app-search">
-      <el-button type="primary" @click="$refs['content-form'].open()">添加</el-button>
+      <el-button type="primary" @click="$refs['content-form'].open()"
+        >添加</el-button
+      >
     </header>
     <el-table
       v-loading="tableLoading"
@@ -11,22 +13,15 @@
       element-loading-spinner="el-icon-loading"
       element-loading-text="加载中，请稍候……"
     >
-      <!-- id: 83
-info: "asd"
-member_id: 140
-pic: "aaaa"
-settcycle_id: 1
-status: 0 -->
       <el-table-column label="内容" prop="info"></el-table-column>
       <el-table-column label="结算周期" prop="settcycle_id"></el-table-column>
-      <el-table-column label="状态" prop="status"></el-table-column>
       <el-table-column label="操作" width="150" align="center">
         <template slot-scope="scope">
           <el-button type="text" @click="$refs.form.open()">发布</el-button>
         </template>
       </el-table-column>
     </el-table>
-    <div class="app-pagination-wrap">
+    <!-- <div class="app-pagination-wrap">
       <el-pagination
         background
         layout="total, sizes, prev, pager, next, jumper"
@@ -35,7 +30,7 @@ status: 0 -->
         :current-page="searchParams.pageIndex"
         @current-change="handleCurrentChange"
       />
-    </div>
+    </div> -->
     <PublishForm ref="form" @update-data="fetchData"></PublishForm>
     <ContentForm ref="content-form" @update-data="fetchData"></ContentForm>
   </div>
@@ -44,7 +39,7 @@ status: 0 -->
 <script>
 import listMixin from "@/mixins/listMixin";
 import PublishForm from "./publish-form.vue";
-import ContentForm from './content-form.vue'
+import ContentForm from "./content-form.vue";
 import { getPublishList } from "@/api/publish";
 export default {
   mixins: [listMixin],

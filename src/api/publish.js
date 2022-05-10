@@ -18,3 +18,12 @@ export function savePublish(data) {
     data: qs.stringify(data),
   })
 }
+
+// 发送模板消息
+export function sendTemplate(data) {
+  return request({
+    url: '/v41/gzh/sendMsg',
+    method: 'post',
+    data: qs.stringify(data),
+  })
+}
