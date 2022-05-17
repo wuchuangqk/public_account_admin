@@ -1,65 +1,33 @@
 <template>
-  <el-dialog
-    title="发布"
-    :visible.sync="dialog.show"
-    width="1000px"
-    :close-on-click-modal="false"
-    :before-close="close"
-  >
+  <el-dialog title="发布" :visible.sync="dialog.show" width="1000px" :close-on-click-modal="false" :before-close="close">
     <el-row :gutter="30">
       <el-col :span="14">
-        <el-form
-          ref="form"
-          :model="formData"
-          :rules="rules"
-          label-width="80px"
-        >
+        <el-form ref="form" :model="formData" :rules="rules" label-width="80px">
           <el-form-item label="标题" prop="first">
             <div class="field-wrap">
-              <el-input
-                v-model="formData.first"
-                placeholder="请输入标题"
-                maxlength="150"
-                class="field"
-              />
+              <el-input v-model="formData.first" placeholder="请输入标题" maxlength="150" class="field" />
               <el-color-picker v-model="color1" :predefine="predefineColors">
               </el-color-picker>
             </div>
           </el-form-item>
           <el-form-item label="签约项目" prop="keyword1">
             <div class="field-wrap">
-              <el-input
-                v-model="formData.keyword1"
-                placeholder="请输入"
-                maxlength="150"
-                class="field"
-              />
+              <el-input v-model="formData.keyword1" placeholder="请输入" maxlength="150" class="field" />
               <el-color-picker v-model="color2" :predefine="predefineColors">
               </el-color-picker>
             </div>
           </el-form-item>
           <el-form-item label="签约时间" prop="keyword2">
             <div class="field-wrap">
-              <el-input
-                v-model="formData.keyword2"
-                placeholder="请输入"
-                maxlength="150"
-                class="field"
-              />
+              <el-input v-model="formData.keyword2" placeholder="请输入" maxlength="150" class="field" />
               <el-color-picker v-model="color3" :predefine="predefineColors">
               </el-color-picker>
             </div>
           </el-form-item>
           <el-form-item label="备注" prop="remark">
             <div class="field-wrap">
-              <el-input
-                v-model="formData.remark"
-                placeholder="请输入备注"
-                maxlength="150"
-                class="field"
-                type="textarea"
-                :rows="3"
-              />
+              <el-input v-model="formData.remark" placeholder="请输入备注" maxlength="150" class="field" type="textarea"
+                :rows="3" />
               <el-color-picker v-model="color4" :predefine="predefineColors">
               </el-color-picker>
             </div>
@@ -108,9 +76,7 @@
 
     <div slot="footer">
       <el-button type="default" @click="close">取 消</el-button>
-      <el-button type="primary" :loading="dialog.loading" @click="submit"
-        >保存</el-button
-      >
+      <el-button type="primary" :loading="dialog.loading" @click="submit">发布</el-button>
     </div>
   </el-dialog>
 </template>
@@ -158,11 +124,11 @@ export default {
     open(id) {
       this.dialog.show = true;
       this.dialog.loading = false;
-      this.id = id
+      this.id = id;
     },
     saveOrUpdate() {
       const params = {
-        id: this.id,
+        fid: this.id,
         first_value: this.formData.first,
         first_color: this.color1,
         keyword1_value: this.formData.keyword1,

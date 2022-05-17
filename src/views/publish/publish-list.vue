@@ -18,7 +18,7 @@
       <el-table-column label="二维码地址" prop="pic"></el-table-column>
       <el-table-column label="操作" width="150" align="center">
         <template slot-scope="scope">
-          <el-button type="text" @click="$refs.form.open()">发布</el-button>
+          <el-button type="text" @click="$refs.form.open(scope.row.id)">发布</el-button>
         </template>
       </el-table-column>
     </el-table>
