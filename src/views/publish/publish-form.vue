@@ -138,9 +138,14 @@ export default {
         remark_value: this.formData.remark,
         remark_color: this.color4,
       };
-      sendTemplate(params).then(() => {
-        this.$message.success("发送成功");
-        this.close();
+      sendTemplate(params).then((res) => {
+        if (res.code != 1) {
+          this.$message.error(res.msg);
+          this.dialog.loading = false;
+        } else {
+          this.$message.success("发送成功");
+          this.close();
+        }
       });
     },
   },

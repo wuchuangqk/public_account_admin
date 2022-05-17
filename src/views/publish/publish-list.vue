@@ -13,6 +13,7 @@
       element-loading-spinner="el-icon-loading"
       element-loading-text="加载中，请稍候……"
     >
+      <el-table-column label="ID" prop="id" width="50" align="center"></el-table-column>
       <el-table-column label="内容" prop="info"></el-table-column>
       <el-table-column label="结算周期" prop="settcycle_id"></el-table-column>
       <el-table-column label="二维码地址" prop="pic"></el-table-column>
