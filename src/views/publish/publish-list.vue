@@ -1,18 +1,10 @@
 <template>
   <div class="app-page">
     <header class="app-search">
-      <el-button type="primary" @click="$refs['content-form'].open()"
-        >添加</el-button
-      >
+      <el-button type="primary" @click="$refs['content-form'].open()">添加</el-button>
     </header>
-    <el-table
-      v-loading="tableLoading"
-      :data="tableData"
-      stripe
-      border
-      element-loading-spinner="el-icon-loading"
-      element-loading-text="加载中，请稍候……"
-    >
+    <el-table v-loading="tableLoading" :data="tableData" stripe border element-loading-spinner="el-icon-loading"
+      element-loading-text="加载中，请稍候……">
       <el-table-column label="ID" prop="id" width="50" align="center"></el-table-column>
       <el-table-column label="内容" prop="info"></el-table-column>
       <el-table-column label="结算周期" prop="settcycle_id"></el-table-column>
@@ -23,16 +15,11 @@
         </template>
       </el-table-column>
     </el-table>
-    <!-- <div class="app-pagination-wrap">
-      <el-pagination
-        background
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="total"
-        :page-size="searchParams.pageSize"
-        :current-page="searchParams.pageIndex"
-        @current-change="handleCurrentChange"
-      />
-    </div> -->
+    <div class="app-pagination-wrap">
+      <el-pagination background layout="total, prev, pager, next, jumper" :total="total"
+        :page-size="searchParams.pageSize" :current-page="searchParams.page"
+        @current-change="handleCurrentChange" />
+    </div>
     <PublishForm ref="form" @update-data="fetchData"></PublishForm>
     <ContentForm ref="content-form" @update-data="fetchData"></ContentForm>
   </div>
@@ -48,15 +35,16 @@ export default {
   components: { PublishForm, ContentForm },
   data() {
     return {
-      tableData: [{ content: "sdfsdfs" }],
+      tableData: [],
     };
   },
   methods: {
     // 获取发布内容列表
     fetchData() {
-      getPublishList(this.searchParams).then((res) => {
+      getPublishList({ page: this.searchParams.page }).then((res) => {
         this.hideLoading();
         this.tableData = res.data;
+        this.total = res.msg
       });
       this.showLoading();
     },
